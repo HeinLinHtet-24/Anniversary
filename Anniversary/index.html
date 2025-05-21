@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Do You Love Me?</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: #fde4ec;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .cat {
+      font-size: 100px;
+      transition: transform 0.3s ease;
+    }
+
+    .wrapper {
+      position: relative;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      position: relative;
+      height: 100px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    #yes {
+      background-color: #ff4081;
+      color: white;
+      z-index: 2;
+    }
+
+    #no {
+      background-color: #ccc;
+      color: black;
+      position: absolute;
+      z-index: 10;
+      left: 140px;
+      top: 0;
+    }
+
+    .heart {
+      position: absolute;
+      color: red;
+      animation: float 2s linear forwards;
+      font-size: 20px;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-150px) scale(1.5); opacity: 0; }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ff4081;
+      animation: confetti-fall 2s linear forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(200px); opacity: 0; }
+    }
+
+    #loginForm {
+      display: none;
+      margin-top: 20px;
+      animation: fadeIn 0.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    input {
+      padding: 8px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    #loginButton {
+      background-color: #4caf50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop preload="auto" id="bgm">
+    <source src="audio/hopeful-love.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="wrapper">
+    <h1 style="font-family: Ancizar Sans, sans-serif;">Do you love me?</h1>
+    <div id="cat" class="cat">😺</div>
+    <div class="buttons">
+      <button id="yes" style="margin-right: 100px;">Yes</button>
+      <button id="no">No</button>
+    </div>
+
+    <!-- Hidden login form -->
+    <div id="loginForm">
+      <input placeholder="Password" class="input" name="text" type="text">
+      <button class="button" id="loginButton">
+        <div class="dots_border"></div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          class="sparkle"
+        >
+          <path
+            class="path"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+            stroke="black"
+            fill="black"
+            d="M14.187 8.096L15 5.25L15.813 8.096C16.0231 8.83114 16.4171 9.50062 16.9577 10.0413C17.4984 10.5819 18.1679 10.9759 18.903 11.186L21.75 12L18.904 12.813C18.1689 13.0231 17.4994 13.4171 16.9587 13.9577C16.4181 14.4984 16.0241 15.1679 15.814 15.903L15 18.75L14.187 15.904C13.9769 15.1689 13.5829 14.4994 13.0423 13.9587C12.5016 13.4181 11.8321 13.0241 11.097 12.814L8.25 12L11.096 11.187C11.8311 10.9769 12.5006 10.5829 13.0413 10.0423C13.5819 9.50162 13.9759 8.83214 14.186 8.097L14.187 8.096Z"
+          ></path>
+          <path
+            class="path"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+            stroke="black"
+            fill="black"
+            d="M6 14.25L5.741 15.285C5.59267 15.8785 5.28579 16.4206 4.85319 16.8532C4.42059 17.2858 3.87853 17.5927 3.285 17.741L2.25 18L3.285 18.259C3.87853 18.4073 4.42059 18.7142 4.85319 19.1468C5.28579 19.5794 5.59267 20.1215 5.741 20.715L6 21.75L6.259 20.715C6.40725 20.1216 6.71398 19.5796 7.14639 19.147C7.5788 18.7144 8.12065 18.4075 8.714 18.259L9.75 18L8.714 17.741C8.12065 17.5925 7.5788 17.2856 7.14639 16.853C6.71398 16.4204 6.40725 15.8784 6.259 15.285L6 14.25Z"
+          ></path>
+          <path
+            class="path"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+            stroke="black"
+            fill="black"
+            d="M6.5 4L6.303 4.5915C6.24777 4.75718 6.15472 4.90774 6.03123 5.03123C5.90774 5.15472 5.75718 5.24777 5.5915 5.303L5 5.5L5.5915 5.697C5.75718 5.75223 5.90774 5.84528 6.03123 5.96877C6.15472 6.09226 6.24777 6.24282 6.303 6.4085L6.5 7L6.697 6.4085C6.75223 6.24282 6.84528 6.09226 6.96877 5.96877C7.09226 5.84528 7.24282 5.75223 7.4085 5.697L8 5.5L7.4085 5.303C7.24282 5.24777 7.09226 5.15472 6.96877 5.03123C6.84528 4.90774 6.75223 4.75718 6.697 4.5915L6.5 4Z"
+          ></path>
+        </svg>
+        <span class="text_button">Explore Our Journey</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const cat = document.getElementById("cat");
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+    const bgm = document.getElementById("bgm");
+    const loginForm = document.getElementById("loginForm");
+
+    loginButton.addEventListener("click", () => {
+    const inputs = loginForm.getElementsByTagName("input");
+    const password = inputs[0].value;
+
+    if (password === "552021") {
+      window.location.href = "secret.html";
+    } else {
+      alert("Incorrect password. Try again! 💔");
+    }
+    });
+
+    yesBtn.addEventListener("mouseover", () => {
+    cat.textContent = "😸"; // excited happy face
+    });
+
+    yesBtn.addEventListener("mouseleave", () => {
+    cat.textContent = "😺"; // reset to neutral happy
+    });
+
+    // Starting position
+    let noX = 140;
+    let noY = 0;
+
+    // Yes Button Click
+    yesBtn.addEventListener("click", () => {
+      cat.textContent = "😻";
+      bgm.play();
+      loginForm.style.display = "block";
+
+      for (let i = 0; i < 20; i++) {
+        createHeart();
+        createConfetti();
+      }
+    });
+
+    // No Button Hover - move only slightly
+    noBtn.addEventListener("mouseover", () => {
+      const moveRange = 150;
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const btnWidth = noBtn.offsetWidth;
+      const btnHeight = noBtn.offsetHeight;
+
+      const newX = noX + (Math.random() * moveRange - moveRange / 2);
+      const newY = noY + (Math.random() * moveRange - moveRange / 2);
+
+      noX = Math.max(10, Math.min(newX, windowWidth - btnWidth - 10));
+      noY = Math.max(10, Math.min(newY, windowHeight - btnHeight - 10));
+
+      noBtn.style.left = `${noX}px`;
+      noBtn.style.top = `${noY}px`;
+
+      cat.textContent = "😿";
+    });
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.top = Math.random() * window.innerHeight + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 2000);
+    }
+
+    function createConfetti() {
+      const confetti = document.createElement("div");
+      confetti.className = "confetti";
+      confetti.style.left = Math.random() * window.innerWidth + "px";
+      confetti.style.top = "0px";
+      confetti.style.backgroundColor = getRandomColor();
+      document.body.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 2000);
+    }
+
+    function getRandomColor() {
+      const colors = ["#ff4081", "#ffc107", "#00bcd4", "#4caf50", "#e91e63"];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+  const today = new Date();
+  const birthdayDay = 22;
+  const birthdayMonth = 4; // May is 4 (0-indexed)
+
+  if (today.getDate() === birthdayDay && today.getMonth() === birthdayMonth) {
+    const modal = document.getElementById("birthdayModal");
+    modal.style.display = "flex";
+
+    // Confetti burst
+    for (let i = 0; i < 40; i++) {
+      createConfetti();
+    }
+
+    document.getElementById("closeModal").addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  }
+});
+  </script>
+
+  <!-- 🎉 Birthday Modal -->
+<div id="birthdayModal" class="birthday-modal">
+  <div class="modal-content">
+    <h2 style="margin-bottom: 30px;margin-top: 30px;">🎂 Happy Birthday, Thel ! 🎈</h2>
+    <p style="margin-bottom: 30px;font-family: Ancizar Sans, sans-serif;">You make the world brighter just by being in it. I’m so lucky to love you.</p>
+    <button id="closeModal" style="font-family: Ancizar Sans, sans-serif;">Let's Start Our Journey 💖</button>
+    <div class="balloons">
+      <span class="balloon red"></span>
+      <span class="balloon blue"></span>
+      <span class="balloon yellow"></span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
